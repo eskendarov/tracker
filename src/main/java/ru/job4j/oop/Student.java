@@ -5,13 +5,17 @@ public class Student {
         System.out.println("I believe I can fly");
     }
 
+    public void music(String lyrics) {
+        System.out.println("I can sign a song : " + lyrics);
+    }
+
     public void music() {
         System.out.println("Tra tra tra");
     }
 
     public static void main(String[] args) {
-        Student student = new Student();
-        student.music();
-        student.song();
+        Student petya = new Student();
+        String song = "I believe, I can fly";
+        petya.music(song);
     }
 }
