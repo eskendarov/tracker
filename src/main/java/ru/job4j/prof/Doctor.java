@@ -1,9 +1,9 @@
 package ru.job4j.prof;
 
 public class Doctor extends Profession {
-    String rank;
-    String dress;
-    Patient patient;
+    private String rank;
+    private String dress;
+    private Patient patient;
 
     public String getRank() {
         return rank;

@@ -1,7 +1,7 @@
 package ru.job4j.prof;
 
 public class Programmer extends Engineer {
-    String progLang;
+    private String progLang;
 
     public String getProgLang() {
         return progLang;

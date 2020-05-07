@@ -1,7 +1,7 @@
 package ru.job4j.prof;
 
 public class Builder {
-    String rank;
+    private String rank;
 
     public String getRank() {
         return rank;
