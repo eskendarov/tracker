@@ -6,7 +6,6 @@ import java.util.Random;
 public class Tracker {
     private final Item[] items = new Item[100];
     private int position = 0;
-    private int size = 0;
 
     public Item add(Item item) {
         item.setId(generateId());
@@ -31,18 +30,11 @@ public class Tracker {
     }
 
     public Item[] findAll() {
-        size = 0;
-        Item[] withoutNull = new Item[items.length];
-        for (Item item : items) {
-            if (null != item) {
-                withoutNull[size++] = item;
-            }
-        }
-        return Arrays.copyOf(withoutNull, size);
+        return Arrays.copyOf(items, position);
     }
 
     public Item[] findByName(String key) {
-        size = 0;
+        int size = 0;
         Item[] withKey = new Item[items.length];
         for (int i = 0; i < position; i++) {
             if (key.equals(items[i].getName())) {
