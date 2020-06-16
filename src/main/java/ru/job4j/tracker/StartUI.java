@@ -31,7 +31,7 @@ public class StartUI {
                     System.out.println("Enter name:");
                     String name = scanner.nextLine();
                     Item item = new Item(name);
-                    System.out.println("Edited: " + tracker.replace(id, item));
+                    System.out.println(tracker.replace(id, item) ? "Item edited" : "Item not found");
                     break;
                 }
                 case 3: {
@@ -44,14 +44,23 @@ public class StartUI {
                     System.out.println("Enter ID:");
                     String id = scanner.nextLine();
                     Item item = tracker.findById(id);
-                    System.out.println("Name: " + item.getName() + ", ID: " + item.getId());
+                    if (null != item) {
+                        System.out.println("Name: " + item.getName() + ", ID: " + item.getId());
+                    } else {
+                        System.out.println("Item not found");
+                    }
                     break;
                 }
                 case 5: {
                     System.out.println("Enter name:");
                     String name = scanner.nextLine();
-                    for (Item item: tracker.findByName(name)){
-                        System.out.println("Name: " + item.getName() + ", ID: " + item.getId());
+                    Item[] items = tracker.findByName(name);
+                    if (items.length > 0) {
+                        for (Item item : items) {
+                            System.out.println("Name: " + item.getName() + ", ID: " + item.getId());
+                        }
+                    } else {
+                        System.out.println("No items with name: " + name);
                     }
                     break;
                 }
