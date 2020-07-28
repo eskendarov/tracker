@@ -61,12 +61,12 @@ public class StartUITest {
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new Exit()
+                new Exit(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "Menu:" + System.lineSeparator() +
-                        "0. Exit Program" + System.lineSeparator()
+                        "0. Exit" + System.lineSeparator()
         ));
     }
 }
