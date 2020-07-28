@@ -8,7 +8,7 @@ public class Fact {
     public int calc(int n) {
         int rsl = 1;
         if (n < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Start should be less then finish.");
         }
         for (int index = 1; index <= n; index++) {
             rsl *= index;
