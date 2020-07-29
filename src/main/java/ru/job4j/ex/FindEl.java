@@ -6,16 +6,19 @@ public class FindEl {
         for (int i = 0; i < value.length; i++) {
             if (key.equals(value[i])) {
                 rsl = i;
+                break;
             }
         }
-        if (rsl == -1) throw new ElementNotFoundException("Element not found!");
+        if (rsl == -1) {
+            throw new ElementNotFoundException("Element not found!");
+        }
         return rsl;
     }
 
     public static void main(String[] args) {
         String[] strings = {"Master", "Light", "Spaces"};
         try {
-            System.out.println(indexOf(strings,"Char"));
+            System.out.println(indexOf(strings, "Char"));
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }
