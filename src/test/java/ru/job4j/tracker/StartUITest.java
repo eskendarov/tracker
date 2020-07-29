@@ -8,6 +8,8 @@ import static org.junit.Assert.*;
 
 public class StartUITest {
 
+    private final String ln = System.lineSeparator();
+
     @Test
     public void createItem() {
         Output output = new StubOutput();
@@ -68,8 +70,8 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu:" + System.lineSeparator() +
-                        "0. Exit" + System.lineSeparator()
+                "Menu:" + ln +
+                        "0. Exit" + ln
         ));
     }
 
@@ -77,26 +79,44 @@ public class StartUITest {
     public void whenFindAll() {
         Tracker tracker = new Tracker();
         Output output = new StubOutput();
-        Input input = new StubInput(new String[]{"0", "Item_1", "0", "Item_2", "1"});
+        Item item = new Item("Item_1");
+        tracker.add(item);
+        Input input = new StubInput(new String[]{"0", "1"});
         UserAction[] actions = {
-                new CreateAction(output),
+                new FindAllAction(output),
                 new Exit(output)
         };
+        String expected = "Menu:" + ln +
+                "0. Show all Items" + ln +
+                "1. Exit" + ln +
+                "Name: " + item.getName() + ", ID: " + item.getId() + ln +
+                "Menu:" + ln +
+                "0. Show all Items" + ln +
+                "1. Exit" + ln;
         new StartUI(output).init(input, tracker, actions);
-        assertThat(tracker.findAll().length, is(2));
+        assertThat(output.toString(), is(expected));
     }
 
     @Test
     public void findByName() {
         Tracker tracker = new Tracker();
         Output output = new StubOutput();
-        Input input = new StubInput(new String[]{"0", "Item_1", "0", "Item_2", "0", "Item_1", "1"});
+        Item item = new Item("Idea");
+        tracker.add(item);
+        Input input = new StubInput(new String[]{"0", "Idea", "1"});
         UserAction[] actions = {
-                new CreateAction(output),
+                new FindByNameAction(output),
                 new Exit(output)
         };
+        String expected = "Menu:" + ln +
+                "0. Find items by Name" + ln +
+                "1. Exit" + ln +
+                "Name: " + item.getName() + ", ID: " + item.getId() + "" + ln +
+                "Menu:" + ln +
+                "0. Find items by Name" + ln +
+                "1. Exit" + ln;
         new StartUI(output).init(input, tracker, actions);
-        assertThat(tracker.findByName("Item_1").length, is(2));
+        assertThat(output.toString(), is(expected));
     }
 
     @Test
@@ -105,12 +125,19 @@ public class StartUITest {
         Output output = new StubOutput();
         Item item = new Item("Item_1");
         tracker.add(item);
-        Input input = new StubInput(new String[]{"0", "Item_2", "0", "Item_3", "1"});
+        Input input = new StubInput(new String[]{"0", item.getId(), "1"});
         UserAction[] actions = {
-                new CreateAction(output),
+                new FindByIdAction(output),
                 new Exit(output)
         };
+        String expected = "Menu:" + ln +
+                "0. Find item by Id" + ln +
+                "1. Exit" + ln +
+                "Name: " + item.getName() + ", ID: " + item.getId() + "" + ln +
+                "Menu:" + ln +
+                "0. Find item by Id" + ln +
+                "1. Exit" + ln;
         new StartUI(output).init(input, tracker, actions);
-        assertThat(tracker.findById(item.getId()).getName(), is("Item_1"));
+        assertThat(output.toString(), is(expected));
     }
 }
