@@ -7,22 +7,21 @@ public class UserStore {
         for (User value : users) {
             if (login.equals(value.getUsername())) {
                 user = value;
+                break;
             }
         }
         if (user == null) {
             throw new UserNotFoundException("User not found!");
-        } else {
-            return user;
         }
+        return user;
     }
 
     public static boolean validate(User user) throws UserInvalidException {
         if (!user.isValid() || user.getUsername().length() < 3) {
             throw new UserInvalidException("Invalid user!");
-        } else {
-            System.out.println("This user has an access");
-            return user.isValid();
         }
+        System.out.println("This user has an access");
+        return user.isValid();
     }
 
     public static void main(String[] args) {
