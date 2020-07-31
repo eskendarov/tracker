@@ -11,14 +11,14 @@ public class UserStore {
             }
         }
         if (user == null) {
-            throw new UserNotFoundException("User not found!");
+            throw new UserNotFoundException("");
         }
         return user;
     }
 
     public static boolean validate(User user) throws UserInvalidException {
         if (!user.isValid() || user.getUsername().length() < 3) {
-            throw new UserInvalidException("Invalid user!");
+            throw new UserInvalidException("");
         }
         System.out.println("This user has an access");
         return user.isValid();
@@ -29,8 +29,12 @@ public class UserStore {
         try {
             User user = findUser(users, "Petr Arsentev");
             validate(user);
+        } catch (UserInvalidException e) {
+            e.printStackTrace();
+            System.out.println("Invalid user!");
         } catch (UserNotFoundException e) {
             e.printStackTrace();
+            System.out.println("User not found!");
         }
     }
 }
