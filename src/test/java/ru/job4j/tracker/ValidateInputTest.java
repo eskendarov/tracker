@@ -6,15 +6,38 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class ValidateInputTest {
+    Output out = new StubOutput();
+    Tracker tracker = new Tracker();
 
     @Test
     public void whenInvalidInput() {
-        Output out = new StubOutput();
         Input in = new StubInput(
-                new String[]{"one","1"}
+                new String[]{"1", "0"}
         );
         ValidateInput input = new ValidateInput(in, out);
-        int selected = input.askInt("Enter menu:");
-        assertThat(selected, is(1));
+        UserAction[] actions = {
+                new Exit(out)
+        };
+        new StartUI(out).init(input, tracker, actions);
+        String exp = String.format("Menu:%n" +
+                "0. Exit%n" +
+                "Wrong input, you can select: 0 .. 0%n" +
+                "Menu:%n" +
+                "0. Exit%n");
+        assertThat(out.toString(), is(exp));
+    }
+
+    @Test
+    public void whenValidInput() {
+        Input in = new StubInput(
+                new String[]{"0"}
+        );
+        ValidateInput input = new ValidateInput(in, out);
+        UserAction[] actions = {
+                new Exit(out)
+        };
+        new StartUI(out).init(input, tracker, actions);
+        String exp = String.format("Menu:%n0. Exit%n");
+        assertThat(out.toString(), is(exp));
     }
 }
