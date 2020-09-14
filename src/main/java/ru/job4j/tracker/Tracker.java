@@ -50,8 +50,7 @@ public class Tracker {
 
     public boolean delete(String id) {
         int i = indexOf(id);
-        items.remove(items.get(i));
-        return false;
+        return items.remove(items.get(i));
     }
 
     public List<Item> findAll() {
