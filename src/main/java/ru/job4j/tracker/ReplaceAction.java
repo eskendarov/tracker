@@ -14,8 +14,8 @@ public class ReplaceAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        String id = input.askStr("Enter ID:");
-        String name = input.askStr("Enter name:");
+        String id = input.askStr("Enter ID: ");
+        String name = input.askStr("Enter name: ");
         Item item = new Item(name);
         out.println(tracker.replace(id, item) ? "Item replaced" : "Item not found");
         return true;
