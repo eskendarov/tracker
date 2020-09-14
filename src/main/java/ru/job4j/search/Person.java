@@ -29,9 +29,4 @@ public class Person {
     public String getAddress() {
         return address;
     }
-
-    @Override
-    public String toString() {
-        return String.format("Name: %s, Surname: %s, Phone: %s, Address: %s", name, surname, phone, address);
-    }
 }
