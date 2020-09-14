@@ -30,30 +30,27 @@ public class Tracker {
 
     private int indexOf(String id) {
         int rsl = -1;
-        for (Item item : items) {
-            if (id.equals(item.getId())) {
-                return items.indexOf(item);
+        for (int i = 0; i < items.size(); i++) {
+            if (id.equals(items.get(i).getId())) {
+                return i;
             }
         }
         return rsl;
     }
 
     public boolean replace(String id, Item item) {
-        if (indexOf(id) != -1) {
+        int i = indexOf(id);
+        if (i != -1) {
             item.setId(id);
-            items.set(indexOf(id), item);
+            items.set(i, item);
             return true;
         }
         return false;
     }
 
     public boolean delete(String id) {
-        for (Item item : items) {
-            if (id.equals(item.getId())) {
-                items.remove(item);
-                return true;
-            }
-        }
+        int i = indexOf(id);
+        items.remove(items.get(i));
         return false;
     }
 
