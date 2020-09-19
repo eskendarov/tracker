@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -12,13 +11,22 @@ import static org.junit.Assert.*;
 
 public class SortItemTest {
 
-    @Test
-    public void sort() {
-        List<Item> names = Arrays.asList(new Item("Ivan"),
+    List<Item> names;
+
+    {
+        names = Arrays.asList(new Item("Ivan"),
                 new Item("Emilia"), new Item("Patrick"));
-        Collections.sort(names, new SortItem.ByOrder());
+    }
+
+    @Test
+    public void sortByOrder() {
+        Collections.sort(names, new SortItemByOrder());
         assertThat(names.get(0).getName(), is("Emilia"));
-        Collections.sort(names, new SortItem.ReversOrder());
+    }
+
+    @Test
+    public void sortReversOrder() {
+        Collections.sort(names, new SortItemReversOrder());
         assertThat(names.get(0).getName(), is("Patrick"));
     }
 }
