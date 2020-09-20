@@ -20,13 +20,13 @@ public class Student {
         this.group = group;
     }
 
-    public String getDatе() {
-        return datе;
+    public String getDate() {
+        return date;
     }
 
-    public void setDatе(String datе) {
-        this.datе = datе;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    String datе;
+    String date;
 }

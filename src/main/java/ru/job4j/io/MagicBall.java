@@ -4,20 +4,21 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class MagicBall {
+
     public static void main(String[] args) {
         System.out.println("Я великий Оракул. Что ты хочешь узнать? ");
         Scanner scanner = new Scanner(System.in);
         String question = scanner.nextLine();
         int answer = new Random().nextInt(3);
-        switch(answer) {
+        switch (answer) {
             case 0:
-                System.out.println("Да");;
+                System.out.println("Да");
                 break;
             case 1:
-                System.out.println("Нет");;
+                System.out.println("Нет");
                 break;
             default:
-                System.out.println("Возможно");;
+                System.out.println("Возможно");
                 break;
         }
     }

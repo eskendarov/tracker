@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class StartUITest {
 
@@ -70,8 +70,8 @@ public class StartUITest {
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu:" + ln +
-                        "0. Exit" + ln
+                "Menu:" + ln
+                        + "0. Exit" + ln
         ));
     }
 
@@ -86,13 +86,13 @@ public class StartUITest {
                 new FindAllAction(output),
                 new Exit(output)
         };
-        String expected = "Menu:" + ln +
-                "0. Show all Items" + ln +
-                "1. Exit" + ln +
-                "Name: " + item.getName() + ", ID: " + item.getId() + ln +
-                "Menu:" + ln +
-                "0. Show all Items" + ln +
-                "1. Exit" + ln;
+        String expected = "Menu:" + ln
+                + "0. Show all Items" + ln
+                + "1. Exit" + ln
+                + "Name: " + item.getName() + ", ID: " + item.getId() + ln
+                + "Menu:" + ln
+                + "0. Show all Items" + ln
+                + "1. Exit" + ln;
         new StartUI(output).init(input, tracker, actions);
         assertThat(output.toString(), is(expected));
     }
@@ -108,13 +108,13 @@ public class StartUITest {
                 new FindByNameAction(output),
                 new Exit(output)
         };
-        String expected = "Menu:" + ln +
-                "0. Find items by Name" + ln +
-                "1. Exit" + ln +
-                "Name: " + item.getName() + ", ID: " + item.getId() + "" + ln +
-                "Menu:" + ln +
-                "0. Find items by Name" + ln +
-                "1. Exit" + ln;
+        String expected = "Menu:" + ln
+                + "0. Find items by Name" + ln
+                + "1. Exit" + ln
+                + "Name: " + item.getName() + ", ID: " + item.getId() + "" + ln
+                + "Menu:" + ln
+                + "0. Find items by Name" + ln
+                + "1. Exit" + ln;
         new StartUI(output).init(input, tracker, actions);
         assertThat(output.toString(), is(expected));
     }
@@ -130,13 +130,13 @@ public class StartUITest {
                 new FindByIdAction(output),
                 new Exit(output)
         };
-        String expected = "Menu:" + ln +
-                "0. Find item by Id" + ln +
-                "1. Exit" + ln +
-                "Name: " + item.getName() + ", ID: " + item.getId() + "" + ln +
-                "Menu:" + ln +
-                "0. Find item by Id" + ln +
-                "1. Exit" + ln;
+        String expected = "Menu:" + ln
+                + "0. Find item by Id" + ln
+                + "1. Exit" + ln
+                + "Name: " + item.getName() + ", ID: " + item.getId() + "" + ln
+                + "Menu:" + ln
+                + "0. Find item by Id" + ln
+                + "1. Exit" + ln;
         new StartUI(output).init(input, tracker, actions);
         assertThat(output.toString(), is(expected));
     }

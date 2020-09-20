@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class ValidateInputTest {
+
     Output out = new StubOutput();
     Tracker tracker = new Tracker();
 
@@ -19,12 +20,12 @@ public class ValidateInputTest {
                 new Exit(out)
         };
         new StartUI(out).init(input, tracker, actions);
-        String exp = String.format("Menu:%n" +
-                "0. Exit%n" +
-                "Wrong input, you can select: 0 .. 0%n" +
-                "Menu:%n" +
-                "0. Exit%n" +
-                "Please enter validate data again.%n");
+        String exp = String.format("Menu:%n"
+                + "0. Exit%n"
+                + "Wrong input, you can select: 0 .. 0%n"
+                + "Menu:%n"
+                + "0. Exit%n"
+                + "Please enter validate data again.%n");
         assertThat(out.toString(), is(exp));
     }
 
