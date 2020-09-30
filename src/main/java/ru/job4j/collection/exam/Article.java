@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class Article {
 
     public static boolean generateBy(String origin, String line) {
-        return new HashSet<>(Arrays.asList(origin.split("\\b")))
+        return new HashSet<>(Arrays.asList(origin.split("[,.;:! ]")))
                 .containsAll(Arrays.asList(line.split(" ")));
     }
 }
