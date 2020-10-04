@@ -11,7 +11,7 @@ public class LambdaBlock {
             System.out.println(String.format("compare - %s : %s", right, left));
             return right.compareTo(left);
         };
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("aaaa", "ddddd","bbbbb","wwwww"));
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("aaaa", "ddddd", "bbbbb", "wwwww"));
         list.sort(cmpDescSize);
     }
 }
