@@ -4,10 +4,17 @@ import java.util.Objects;
 
 public class Address implements Comparable<Address> {
 
-    private String city;
-    private String street;
-    private int home;
-    private int apartment;
+    private final String city;
+    private final String street;
+    private final int home;
+    private final int apartment;
+
+    public Address(String city, String street, int home, int apartment) {
+        this.city = city;
+        this.street = street;
+        this.home = home;
+        this.apartment = apartment;
+    }
 
     @Override
     public boolean equals(Object o) {
