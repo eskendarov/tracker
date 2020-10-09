@@ -18,13 +18,13 @@ public class ConverterTest {
                 new Student(23, "Krakovskaya"),
                 new Student(11, "Sharikov"),
                 new Student(33, "Poligraph"),
-                new Student(11, "Sharikov"),
+                new Student(21, "Sharikov"),
                 new Student(44, "Bormental")
         );
         Map<String, Student> studentMap = new Converter().toMap(students);
         Map<String, Student> expeted = new HashMap<>();
         expeted.put("Poligraph", new Student(33, "Poligraph"));
-        expeted.put("Sharikov", new Student(11, "Sharikov"));
+        expeted.put("Sharikov", new Student(21, "Sharikov"));
         expeted.put("Bormental", new Student(44, "Bormental"));
         expeted.put("Krakovskaya", new Student(23, "Krakovskaya"));
         assertThat(studentMap, is(expeted));
