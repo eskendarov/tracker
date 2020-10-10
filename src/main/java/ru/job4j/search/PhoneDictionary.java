@@ -23,7 +23,7 @@ public class PhoneDictionary {
         Predicate<Person> phone = person -> person.getPhone().contains(key);
         Predicate<Person> address = person -> person.getAddress().contains(key);
         Predicate<Person> contains = name.or(surname).or(phone).or(address);
-        ArrayList<Person> result = new ArrayList<>();
+        var result = new ArrayList<Person>();
         persons.forEach(person -> {
             if (contains.test(person)) {
                 result.add(person);
