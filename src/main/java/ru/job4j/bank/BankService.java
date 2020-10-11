@@ -5,42 +5,41 @@ import java.util.stream.Stream;
 
 public class BankService {
 
-    private Map<User, List<Account>> users = new HashMap<>();
+    private final Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<>());
     }
 
     public void addAccount(String passport, Account account) {
-        User user = findByPassport(passport);
-        if (null != user && !users.get(user).contains(account)) {
-            users.get(user).add(account);
+        var user = findByPassport(passport);
+        if (user.isPresent() && !users.get(user.get()).contains(account)) {
+            users.get(user.get()).add(account);
         }
     }
 
-    public User findByPassport(String passport) {
+    public Optional<User> findByPassport(String passport) {
         return users.keySet().stream()
                 .filter(user -> user.getPassport().equals(passport))
-                .findFirst().orElse(null);
+                .findFirst();
     }
 
-    public Account findByRequisite(String passport, String requisite) {
-        User user = findByPassport(passport);
+    public Optional<Account> findByRequisite(String passport, String requisite) {
+        var user = findByPassport(passport);
         return Stream.of(users)
-                .filter(users -> null != user)
-                .flatMap(account -> account.get(user).stream())
+                .filter(users -> user.isPresent())
+                .flatMap(account -> account.get(user.get()).stream())
                 .filter(account -> account.getRequisite().equals(requisite))
-                .findFirst().orElse(null);
+                .findFirst();
     }
 
-    public boolean transferMoney(String srcPassport, String srcRequisite,
-                                 String destPassport, String destRequisite, double amount) {
-        Account src = findByRequisite(srcPassport, srcRequisite);
-        Account dest = findByRequisite(destPassport, destRequisite);
-        if (null != src.getRequisite() && null != dest.getRequisite()
-                && src.getBalance() >= amount) {
-            dest.setBalance(dest.getBalance() + amount);
-            src.setBalance(src.getBalance() - amount);
+    public boolean transferMoney(String srcPassport, String srcRequisite, String destPassport,
+                                 String destRequisite, double amount) {
+        var src = findByRequisite(srcPassport, srcRequisite);
+        var dest = findByRequisite(destPassport, destRequisite);
+        if (src.isPresent() && dest.isPresent() && src.get().getBalance() >= amount) {
+            dest.get().setBalance(dest.get().getBalance() + amount);
+            src.get().setBalance(src.get().getBalance() - amount);
             return true;
         }
         return false;
