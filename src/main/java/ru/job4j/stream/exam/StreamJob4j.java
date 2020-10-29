@@ -1,32 +1,50 @@
 package ru.job4j.stream.exam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StreamJob4j {
 
-    static Stream<Integer> integerStream;
+    private static Function<Integer, Integer> map;
+    private static Predicate<Integer> filter;
+    private static final ArrayList<Integer> source = new ArrayList<>();
+    private static final ArrayList<Integer> dest = new ArrayList<>();
+    private static StreamJob4j streamJob4j;
 
-    public StreamJob4j(Stream<Integer> integerStream) {
-        this.integerStream = integerStream;
+    private StreamJob4j() {
+    }
+
+    public static StreamJob4j getInstance() {
+        if (streamJob4j == null) {
+            streamJob4j = new StreamJob4j();
+        }
+        return streamJob4j;
     }
 
     static StreamJob4j of(Integer... args) {
-        return new StreamJob4j(Stream.of(args));
+        source.addAll(List.of(args));
+        return getInstance();
     }
 
-    static StreamJob4j map(Function<Integer, Integer> mapper) {
-        return new StreamJob4j(integerStream.map(mapper));
+    public StreamJob4j map(Function<Integer, Integer> mapper) {
+        map = mapper;
+        return getInstance();
     }
 
-    static StreamJob4j filter(Predicate<Integer> predicate) {
-        return new StreamJob4j(integerStream.filter(predicate));
+    public StreamJob4j filter(Predicate<Integer> predicate) {
+        filter = predicate;
+        return getInstance();
     }
 
-    static List<Integer> collect() {
-        return integerStream.collect(Collectors.toList());
+    public ArrayList<Integer> collect() {
+        source.forEach(integer -> {
+            int el = map.apply(integer);
+            if (filter.test(el)) {
+                dest.add(el);
+            }
+        });
+        return dest;
     }
 }
