@@ -9,8 +9,8 @@ public class StreamJob4j {
 
     private static Function<Integer, Integer> map;
     private static Predicate<Integer> filter;
-    private static final ArrayList<Integer> source = new ArrayList<>();
-    private static final ArrayList<Integer> dest = new ArrayList<>();
+    private static final ArrayList<Integer> SOURCE = new ArrayList<>();
+    private static final ArrayList<Integer> DEST = new ArrayList<>();
     private static StreamJob4j streamJob4j;
 
     private StreamJob4j() {
@@ -24,7 +24,7 @@ public class StreamJob4j {
     }
 
     static StreamJob4j of(Integer... args) {
-        source.addAll(List.of(args));
+        SOURCE.addAll(List.of(args));
         return getInstance();
     }
 
@@ -39,12 +39,12 @@ public class StreamJob4j {
     }
 
     public ArrayList<Integer> collect() {
-        source.forEach(integer -> {
+        SOURCE.forEach(integer -> {
             int el = map.apply(integer);
             if (filter.test(el)) {
-                dest.add(el);
+                DEST.add(el);
             }
         });
-        return dest;
+        return DEST;
     }
 }

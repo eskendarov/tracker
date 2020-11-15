@@ -7,22 +7,22 @@ import java.util.function.Predicate;
 
 public class EasyStream {
 
-    private static final Builder builder = new Builder();
+    private static final Builder BUILDER = new Builder();
 
     public static EasyStream of(List<Integer> source) {
-        return builder.of(source);
+        return BUILDER.of(source);
     }
 
     public EasyStream map(Function<Integer, Integer> mapper) {
-        return builder.map(mapper);
+        return BUILDER.map(mapper);
     }
 
     public EasyStream filter(Predicate<Integer> predicate) {
-        return builder.filter(predicate);
+        return BUILDER.filter(predicate);
     }
 
     public List<Integer> collect() {
-        return builder.collect();
+        return BUILDER.collect();
     }
 
     public static class Builder {
