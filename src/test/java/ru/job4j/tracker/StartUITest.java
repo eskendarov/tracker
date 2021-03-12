@@ -16,7 +16,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0", "Item name", "1"}
         );
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         UserAction[] actions = {
                 new CreateAction(output),
                 new Exit(output)
@@ -27,7 +27,7 @@ public class StartUITest {
 
     @Test
     public void whenReplaceItem() {
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Output output = new StubOutput();
@@ -44,7 +44,7 @@ public class StartUITest {
 
     @Test
     public void whenDeleteItem() {
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Item item = tracker.add(new Item("Deleted item"));
         Output output = new StubOutput();
         Input in = new StubInput(
@@ -64,7 +64,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"0"}
         );
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         UserAction[] actions = {
                 new Exit(out)
         };
@@ -77,7 +77,7 @@ public class StartUITest {
 
     @Test
     public void whenFindAll() {
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Output output = new StubOutput();
         Item item = new Item("Item_1");
         tracker.add(item);
@@ -89,7 +89,7 @@ public class StartUITest {
         String expected = "Menu:" + ln
                 + "0. Show all Items" + ln
                 + "1. Exit" + ln
-                + "Name: " + item.getName() + ", ID: " + item.getId() + ln
+                + item.toString() + ln
                 + "Menu:" + ln
                 + "0. Show all Items" + ln
                 + "1. Exit" + ln;
@@ -99,7 +99,7 @@ public class StartUITest {
 
     @Test
     public void findByName() {
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Output output = new StubOutput();
         Item item = new Item("Idea");
         tracker.add(item);
@@ -111,7 +111,7 @@ public class StartUITest {
         String expected = "Menu:" + ln
                 + "0. Find items by Name" + ln
                 + "1. Exit" + ln
-                + "Name: " + item.getName() + ", ID: " + item.getId() + "" + ln
+                + item.toString() + ln
                 + "Menu:" + ln
                 + "0. Find items by Name" + ln
                 + "1. Exit" + ln;
@@ -121,7 +121,7 @@ public class StartUITest {
 
     @Test
     public void findById() {
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         Output output = new StubOutput();
         Item item = new Item("Item_1");
         tracker.add(item);
@@ -133,7 +133,7 @@ public class StartUITest {
         String expected = "Menu:" + ln
                 + "0. Find item by Id" + ln
                 + "1. Exit" + ln
-                + "Name: " + item.getName() + ", ID: " + item.getId() + "" + ln
+                + item.toString() + ln
                 + "Menu:" + ln
                 + "0. Find item by Id" + ln
                 + "1. Exit" + ln;
@@ -147,7 +147,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[]{"1", "0"}
         );
-        Tracker tracker = new Tracker();
+        Store tracker = new MemTracker();
         UserAction[] actions = {
                 new Exit(out)
         };

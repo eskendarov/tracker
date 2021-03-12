@@ -26,6 +26,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Name: " + name + ", ID: " + id;
+        return String.format("Item{ID=%s, Name=%s}", id, name);
     }
 }

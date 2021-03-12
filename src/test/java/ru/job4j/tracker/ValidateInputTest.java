@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class ValidateInputTest {
 
     Output out = new StubOutput();
-    Tracker tracker = new Tracker();
+    Store memTracker = new MemTracker();
 
     @Test
     public void whenInvalidInput() {
@@ -19,7 +19,7 @@ public class ValidateInputTest {
         UserAction[] actions = {
                 new Exit(out)
         };
-        new StartUI(out).init(input, tracker, actions);
+        new StartUI(out).init(input, memTracker, actions);
         String exp = String.format("Menu:%n"
                 + "0. Exit%n"
                 + "Wrong input, you can select: 0 .. 0%n"
@@ -38,7 +38,7 @@ public class ValidateInputTest {
         UserAction[] actions = {
                 new Exit(out)
         };
-        new StartUI(out).init(input, tracker, actions);
+        new StartUI(out).init(input, memTracker, actions);
         String exp = String.format("Menu:%n0. Exit%n");
         assertThat(out.toString(), is(exp));
     }

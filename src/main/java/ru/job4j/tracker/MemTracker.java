@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Tracker {
+public class MemTracker implements Store {
 
     private final List<Item> items = new ArrayList<>();
 
@@ -65,5 +65,15 @@ public class Tracker {
             }
         }
         return withKey;
+    }
+
+    @Override
+    public void init() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void close() {
+        throw new UnsupportedOperationException();
     }
 }
