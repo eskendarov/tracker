@@ -24,6 +24,10 @@ public class SqlTracker implements Store {
         init();
     }
 
+    public SqlTracker(Connection connection) {
+        this.connection = connection;
+    }
+
     public void init() {
         try {
             final ResourceBundle res = ResourceBundle.getBundle("application");
