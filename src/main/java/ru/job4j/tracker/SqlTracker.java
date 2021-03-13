@@ -129,7 +129,7 @@ public class SqlTracker implements Store {
     public Item findById(String id) {
         Item item = null;
         try (PreparedStatement statement = connection.prepareStatement(
-                "select * from "items" where id = ?")
+                "select * from items where id = ?")
         ) {
             statement.setInt(1, Integer.parseInt(id));
             final ResultSet resultSet = statement.executeQuery();
