@@ -35,8 +35,8 @@ public class SingleTracker {
         return tracker.replace(id, item);
     }
 
-    public Item findById(int id) {
-        return null;
+    public Item findById(String id) {
+        return tracker.findById(id);
     }
 
     public List<Item> findByName(String name) {
