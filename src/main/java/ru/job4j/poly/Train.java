@@ -6,7 +6,7 @@ package ru.job4j.poly;
  * @author Enver Eskendarov
  * @version 1.0 06/06/2021
  */
-public class Train implements Vehicle{
+public class Train implements Vehicle {
 
     @Override
     public void move() {

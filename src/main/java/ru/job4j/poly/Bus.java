@@ -1,6 +1,7 @@
 package ru.job4j.poly;
 
 public class Bus implements Transport {
+
     private double priceForLit = 46.25;
 
     public double getPriceForLit() {
