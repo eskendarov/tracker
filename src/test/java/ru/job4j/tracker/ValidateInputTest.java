@@ -42,4 +42,31 @@ public class ValidateInputTest {
         String exp = String.format("Menu:%n0. Exit%n");
         assertThat(out.toString(), is(exp));
     }
+
+    @Test
+    public void whenMultiValidInput() {
+        Input in = new StubInput(
+                new String[]{"0", "0"}
+        );
+        ValidateInput input = new ValidateInput(in, out);
+        UserAction[] actions = {
+                new Exit(out),
+                new CreateAction(out)
+        };
+        new StartUI(out).init(input, memTracker, actions);
+        String exp = String.format("Menu:%n0. Exit%n1. Create%n");
+        assertThat(out.toString(), is(exp));
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void whenNegativeInputInvalid() {
+        Input in = new StubInput(
+                new String[]{"-1"}
+        );
+        ValidateInput input = new ValidateInput(in, out);
+        UserAction[] actions = {
+                new Exit(out)
+        };
+        new StartUI(out).init(input, memTracker, actions);
+    }
 }
