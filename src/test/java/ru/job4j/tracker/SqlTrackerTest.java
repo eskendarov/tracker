@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.models.Item;
+import ru.job4j.tracker.storage.SqlTracker;
+import ru.job4j.tracker.utils.ConnectionRollback;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,9 +15,8 @@ import static org.junit.Assert.assertThat;
 
 public class SqlTrackerTest {
 
-    public Connection init() throws ClassNotFoundException, SQLException {
+    public Connection init() throws SQLException {
         final ResourceBundle res = ResourceBundle.getBundle("application");
-        Class.forName(res.getString("psql.driver"));
         return DriverManager.getConnection(
                 res.getString("psql.url"),
                 res.getString("psql.username"),

@@ -1,5 +1,28 @@
 package ru.job4j.tracker;
 
+import ru.job4j.tracker.input.ConsoleInput;
+import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.input.ValidateInput;
+import ru.job4j.tracker.menuitemactions.CreateAction;
+import ru.job4j.tracker.menuitemactions.DeleteAction;
+import ru.job4j.tracker.menuitemactions.Exit;
+import ru.job4j.tracker.menuitemactions.FindAllAction;
+import ru.job4j.tracker.menuitemactions.FindByIdAction;
+import ru.job4j.tracker.menuitemactions.FindByNameAction;
+import ru.job4j.tracker.menuitemactions.ReplaceAction;
+import ru.job4j.tracker.menuitemactions.UserAction;
+import ru.job4j.tracker.output.ConsoleOutput;
+import ru.job4j.tracker.output.Output;
+import ru.job4j.tracker.storage.SqlTracker;
+import ru.job4j.tracker.storage.Store;
+
+/**
+ * StartUI - Запускает приложение, интерфейс пользователя..
+ *
+ * @author Enver Eskendarov
+ * @version 1.0 03.09.2021
+ */
+
 public class StartUI {
 
     private final Output out;
@@ -21,17 +44,20 @@ public class StartUI {
             this.showMenu(actions);
             int select = input.askInt("Select: ");
             if (select < 0 || select >= actions.length) {
-                out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
+                out.println(
+                        "Wrong input, you can select: 0 .. "
+                                + (actions.length - 1)
+                );
                 continue;
             }
-            UserAction action = actions[select];
+            final UserAction action = actions[select];
             run = action.execute(input, tracker);
         }
     }
 
     public static void main(String[] args) {
-        Output output = new ConsoleOutput();
-        Input input = new ValidateInput(new ConsoleInput(), output);
+        final Output output = new ConsoleOutput();
+        final Input input = new ValidateInput(new ConsoleInput(), output);
         try (Store tracker = new SqlTracker()) {
             UserAction[] actions = {
                     new CreateAction(output),

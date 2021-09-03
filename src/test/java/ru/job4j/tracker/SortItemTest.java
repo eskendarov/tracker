@@ -1,13 +1,16 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.models.Item;
+import ru.job4j.tracker.utils.comparators.SortItemByOrder;
+import ru.job4j.tracker.utils.comparators.SortItemReversOrder;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class SortItemTest {
 

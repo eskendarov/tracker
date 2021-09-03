@@ -1,12 +1,9 @@
-package ru.job4j.tracker;
-
-import java.time.LocalDateTime;
+package ru.job4j.tracker.models;
 
 public class Item {
 
     private String id;
     private String name;
-    private final LocalDateTime created = LocalDateTime.now(); //not used
 
     public Item(String name) {
         this.name = name;
@@ -33,8 +30,27 @@ public class Item {
         this.name = name;
     }
 
-    public LocalDateTime getCreated() {
-        return created;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        final Item other = (Item) obj;
+
+        if (!this.getId().equals(other.getId())) {
+            return false;
+        }
+        return this.getName().equals(other.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getName().hashCode();
+        return result;
     }
 
     @Override

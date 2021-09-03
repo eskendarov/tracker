@@ -8,7 +8,9 @@ import ru.job4j.collection.comparators.JobDescByPriority;
 
 import java.util.Comparator;
 
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.assertThat;
 
 public class JobTest {

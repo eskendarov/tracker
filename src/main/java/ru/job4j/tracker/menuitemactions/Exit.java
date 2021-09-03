@@ -1,6 +1,11 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.menuitemactions;
+
+import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.output.Output;
+import ru.job4j.tracker.storage.Store;
 
 public class Exit implements UserAction {
+
     private final Output out;
 
     public Exit(Output output) {
